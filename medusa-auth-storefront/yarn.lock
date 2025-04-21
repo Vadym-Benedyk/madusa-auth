@@ -619,7 +619,7 @@
   resolved "https://registry.npmjs.org/@medusajs/icons/-/icons-2.7.0.tgz"
   integrity sha512-0PqVre5MDbGy96KbCHaQmtUwqqIVOGK6ZwtXcBQjN/sT8XH/dU839F+9u0yGknqt7VGr11vmGmRkv0fWCXuiZQ==
 
-"@medusajs/js-sdk@latest":
+"@medusajs/js-sdk@^2.7.0":
   version "2.7.0"
   resolved "https://registry.npmjs.org/@medusajs/js-sdk/-/js-sdk-2.7.0.tgz"
   integrity sha512-sV3CsY8kh4VwO1ewRyCG38A/WRofAqb/MFBsiEXtmCOjYftQNAdvXWCLzp54AUGWHj2HMMpTsM43BpbItPpdzQ==
@@ -628,7 +628,7 @@
     fetch-event-stream "^0.1.5"
     qs "^6.12.1"
 
-"@medusajs/types@2.7.0", "@medusajs/types@latest":
+"@medusajs/types@^2.7.0", "@medusajs/types@2.7.0":
   version "2.7.0"
   resolved "https://registry.npmjs.org/@medusajs/types/-/types-2.7.0.tgz"
   integrity sha512-2RRTRIDfwjmUy2MXjNmeKMnHPtu1bD7p7X+sR9Og9Ec+sNSvJczhXjA8PAX/AKXNdPLZqtO1++fdAxysc+eNRA==

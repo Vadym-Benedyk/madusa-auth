@@ -13,7 +13,7 @@ type AccountInfoProps = {
   errorMessage?: string
   clearState: () => void
   children?: React.ReactNode
-  'data-testid'?: string
+  "data-testid"?: string
 }
 
 const AccountInfo = ({
@@ -41,6 +41,8 @@ const AccountInfo = ({
     }
   }, [isSuccess, close])
 
+  console.log("INFO", currentInfo)
+
   return (
     <div className="text-small-regular" data-testid={dataTestid}>
       <div className="flex items-end justify-between">
@@ -55,6 +57,13 @@ const AccountInfo = ({
           </div>
         </div>
         <div>
+          <Button
+            variant="transparent"
+            className="w-[100px] min-h-[25px] py-1 mr-4 bg-ui-tag-green-bg hover:bg-ui-tag-green-bg-hover"
+            onClick={() => alert("not implemented")}
+          >
+            verify
+          </Button>
           <Button
             variant="secondary"
             className="w-[100px] min-h-[25px] py-1"
