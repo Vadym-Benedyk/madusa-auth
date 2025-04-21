@@ -1,11 +1,18 @@
-import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
+import type {MedusaRequest, MedusaResponse} from "@medusajs/framework/http"
+import sendOtpWorkflow from "../../../workflows/customer_otp/send-otp";
+import {z} from "zod"
+import {createOtpRequestSchema} from "./validator"
 
+type CreateOtpRequestType = z.infer<typeof createOtpRequestSchema>;
 
+export const GET = async (
+    req: MedusaRequest,
+    res: MedusaResponse
+) => {
+    const { result } = await sendOtpWorkflow(req.scope)
+        .run({
+            input: req.validatedQuery.id as string,
+        })
 
-export async function GET(req: MedusaRequest, res: MedusaResponse) {
-    res.status(200).json({ message: "Hello world!" })
-}
-
-export async function POST(req: MedusaRequest, res: MedusaResponse) {
-    res.status(200).json({ message: "Hello world!" })
+    res.json({ message: "Hello world!", result })
 }

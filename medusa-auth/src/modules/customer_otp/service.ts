@@ -13,38 +13,36 @@ class CustomerOtpService extends MedusaService({
 
     async checkPhone(customerId: string): Promise<any> {
         try {
-            return await this.retrieveCustomer( customerId,
-                {
-                    select: ["id", "phone"]
-                }
-            );
+            return await this.retrieveCustomer( customerId );
         } catch (error) {
             throw new Error("Failed to read customer phone from DB. Error: " + error);
         }
     }
 
-    async sendOtp(number: string): Promise<any> {
+
+    async sendOtp(phone: string): Promise<any> {
         try {
             const verification = await this.client.verify.v2
                 .services(this.verifyServiceSid)
                 .verifications.create({
                     channel: "sms",
                     to: phone,
-                });
+                })
 
             return {
                 status: verification.status,
                 message: 'OTP sent successfully',
             }
-        } catch (error) { throw new BadRequestException('Failed to send OTP: ' + error)}
-
-
+        } catch (error) {
+            throw new Error('Failed to send OTP: ' + error)
+        }
     }
+
 
     async deleteByCustomerId(customerId: string): Promise<void> {
         await this.deleteCustomerOtps({
             customer_id: customerId
-        });
+        })
     }
 }
 
