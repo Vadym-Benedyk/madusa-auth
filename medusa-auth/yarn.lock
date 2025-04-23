@@ -2339,6 +2339,15 @@
     uuid "^9.0.0"
     zod "3.22.4"
 
+"@medusajs/modules-sdk@^2.7.1":
+  version "2.7.1"
+  resolved "https://registry.npmjs.org/@medusajs/modules-sdk/-/modules-sdk-2.7.1.tgz"
+  integrity sha512-4FHzYvQNm7Ul/iQM1Fth2SU3LWz4aRh0HTEaVnD6t0gB6zQwGzVpGW2IPJy3pncQx6Aj2beQtov8QGVHKx2E4w==
+  dependencies:
+    "@medusajs/orchestration" "2.7.1"
+    "@medusajs/types" "2.7.1"
+    "@medusajs/utils" "2.7.1"
+
 "@medusajs/modules-sdk@2.7.0":
   version "2.7.0"
   resolved "https://registry.npmjs.org/@medusajs/modules-sdk/-/modules-sdk-2.7.0.tgz"
@@ -2372,6 +2381,14 @@
   dependencies:
     "@medusajs/types" "2.7.0"
     "@medusajs/utils" "2.7.0"
+
+"@medusajs/orchestration@2.7.1":
+  version "2.7.1"
+  resolved "https://registry.npmjs.org/@medusajs/orchestration/-/orchestration-2.7.1.tgz"
+  integrity sha512-Lm2XaSjDGaXGQnjJpiqUzncgn1JKfjITseOjNHy+3pqL6m6VamJASYn9ZZdI49ZGWw6tBnKYDd0qkQ3UY2NiwQ==
+  dependencies:
+    "@medusajs/types" "2.7.1"
+    "@medusajs/utils" "2.7.1"
 
 "@medusajs/order@2.7.0":
   version "2.7.0"
@@ -2464,6 +2481,13 @@
   dependencies:
     bignumber.js "^9.1.2"
 
+"@medusajs/types@2.7.1":
+  version "2.7.1"
+  resolved "https://registry.npmjs.org/@medusajs/types/-/types-2.7.1.tgz"
+  integrity sha512-N1CXDwNRH2XnQBcMvtPgl9dWdCPaMGFZKT+Yduro9rhTrmuFDOJUtJpSM/fZIU5yA7RwJbrnnCWxBtJ0lQsEdA==
+  dependencies:
+    bignumber.js "^9.1.2"
+
 "@medusajs/ui@4.0.8":
   version "4.0.8"
   resolved "https://registry.npmjs.org/@medusajs/ui/-/ui-4.0.8.tgz"
@@ -2500,6 +2524,26 @@
     "@graphql-tools/merge" "^9.0.7"
     "@graphql-tools/schema" "^10.0.6"
     "@medusajs/types" "2.7.0"
+    "@types/pluralize" "^0.0.33"
+    bignumber.js "^9.1.2"
+    dotenv "^16.4.5"
+    dotenv-expand "^11.0.6"
+    graphql "^16.9.0"
+    jsonwebtoken "^9.0.2"
+    pg-connection-string "^2.7.0"
+    pluralize "^8.0.0"
+    ulid "^2.3.0"
+
+"@medusajs/utils@2.7.1":
+  version "2.7.1"
+  resolved "https://registry.npmjs.org/@medusajs/utils/-/utils-2.7.1.tgz"
+  integrity sha512-YIK1DrwfMp5ZyQCaVxN0LjC1qPvA99Cz9Nj+aTbdFDOA4LA+CYx4WJsT/NZCkC/6ff3EaRCL7U9JPDWVw5AlUQ==
+  dependencies:
+    "@graphql-codegen/core" "^4.0.2"
+    "@graphql-codegen/typescript" "^4.0.9"
+    "@graphql-tools/merge" "^9.0.7"
+    "@graphql-tools/schema" "^10.0.6"
+    "@medusajs/types" "2.7.1"
     "@types/pluralize" "^0.0.33"
     bignumber.js "^9.1.2"
     dotenv "^16.4.5"

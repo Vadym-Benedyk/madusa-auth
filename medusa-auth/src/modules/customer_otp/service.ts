@@ -1,23 +1,13 @@
 import {MedusaService} from "@medusajs/framework/utils";
 import CustomerOtp from "./models/customer_otp.model";
-import {Customer} from "@medusajs/customer/dist/models";
 import * as twilio from 'twilio';
 
 
 class CustomerOtpService extends MedusaService({
-    CustomerOtp,
-    Customer
+    CustomerOtp
 }) {
     private readonly client: twilio.Twilio
     private readonly verifyServiceSid: string
-
-    async checkPhone(customerId: string): Promise<any> {
-        try {
-            return await this.retrieveCustomer( customerId );
-        } catch (error) {
-            throw new Error("Failed to read customer phone from DB. Error: " + error);
-        }
-    }
 
 
     async sendOtp(phone: string): Promise<any> {

@@ -1,13 +1,8 @@
-import {
-    createStep,
-    StepResponse,
-    createWorkflow,
-    WorkflowResponse,
-} from "@medusajs/framework/workflows-sdk"
+import {createStep, createWorkflow, StepResponse, WorkflowResponse,} from "@medusajs/framework/workflows-sdk"
 import CustomerOtpService from "../../modules/customer_otp/service";
 
 //Steep for deleting customer_otp
-export const deleteCustomerOtpDeleteStep = createStep("delete-customer-otp",
+export const deleteCustomerOtpDeleteStep = createStep("delete-customer-otp-otp",
     async (input: { customer_id: string }, { container }) => {
     //getting methods from container service
         const customerOtpService = container.resolve<CustomerOtpService>('customerOtpService');
@@ -28,7 +23,7 @@ export const deleteCustomerOtpDeleteStep = createStep("delete-customer-otp",
 
 //Workflow for deleting customer_otp
 export const deleteCustomerOtpWorkflow = createWorkflow(
-    "delete-customer-otp",
+    "delete-customer-otp-otp",
     (input: { customer_id: string }) => {
         const deleteOtpStep = deleteCustomerOtpDeleteStep(input);
         return new WorkflowResponse([deleteOtpStep])
@@ -36,4 +31,4 @@ export const deleteCustomerOtpWorkflow = createWorkflow(
 
 
 
-// Here we realize delete customer-otp if customer is deleted
+// Here we realize delete customer-otp-otp if customer-otp is deleted
