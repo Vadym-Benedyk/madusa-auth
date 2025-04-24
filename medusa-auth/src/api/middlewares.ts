@@ -1,7 +1,7 @@
 import {defineMiddlewares} from "@medusajs/medusa";
 import {ContainerRegistrationKeys} from "@medusajs/framework/utils";
-import {validateAndTransformQuery} from "@medusajs/framework";
-import {createOtpRequestSchema} from "./store/customer-otp/validator";
+import {validateAndTransformBody, validateAndTransformQuery} from "@medusajs/framework";
+import {createOtpRequestSchema, verifyOtpRequestSchema} from "./store/customer-otp/validator";
 
 export default defineMiddlewares({
     routes: [
@@ -22,12 +22,17 @@ export default defineMiddlewares({
                     }
                 ),
                 (req, res, next) => {
-                    const { customerId } = req.validatedQuery // <-- ось тут доступ до валідованого
+                    const { customerId } = req.validatedQuery
                     const logger = req.scope.resolve(ContainerRegistrationKeys.LOGGER)
                     logger.info(`Validated customerId: ${customerId}`)
                     next()
                 }
             ],
+        },
+        {
+            matcher: "/store/customer-otp",
+            method: "POST",
+            middlewares: [ validateAndTransformBody(verifyOtpRequestSchema)],
         }
     ],
 })

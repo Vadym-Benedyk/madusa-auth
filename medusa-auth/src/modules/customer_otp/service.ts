@@ -1,6 +1,15 @@
-import {MedusaService} from "@medusajs/framework/utils";
+import {
+    ContainerRegistrationKeys,
+    InjectManager,
+    MedusaContext,
+    MedusaError,
+    MedusaService
+} from "@medusajs/framework/utils";
 import CustomerOtp from "./models/customer_otp.model";
 import twilio from "twilio";
+import {container} from "@medusajs/framework";
+import {Context} from "node:vm";
+import {CustomerOtpInterface} from "./interfaces/customer-otp.interface";
 
 
 class CustomerOtpService extends MedusaService({
@@ -49,6 +58,59 @@ class CustomerOtpService extends MedusaService({
     }
 
 
+    async verifyOtp(code: string, phone: string): Promise<string> {
+        const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
+        try {
+            const verificationCheck = await this.client.verify.v2
+                .services(this.verifyServiceSid)
+                .verificationChecks.create({
+                    code: code,
+                    to: phone
+                });
+            if (verificationCheck.status === 'approved') {
+                logger.info("Verification approved successfully")
+                return phone
+            }
+
+            logger.warn(`Verification not approved: ${verificationCheck.status}`)
+            throw new MedusaError(
+                MedusaError.Types.INVALID_DATA,
+                "OTP verification failed"
+            )
+        } catch (error: any) {
+            logger.error("Failed to verify OTP:", error);
+            throw new MedusaError(
+                MedusaError.Types.INVALID_DATA,
+                `Failed to verify OTP: ${error.message || error.toString()}`
+            );
+        }
+    }
+
+
+    //Get customerId and change phone verify status. Return the customer_otp object
+    @InjectManager()
+    async updateStatus(
+        customerId: string,
+        @MedusaContext() sharedContext?: Context
+    ): Promise<CustomerOtpInterface> {
+        const manager = sharedContext?.manager
+
+        if (!manager) {
+            throw new Error("No transaction manager available")
+        }
+
+        // Update the is_phone_verified field to true
+        const result = await manager.nativeUpdate(
+            "customer_otp",
+            { customer_id: customerId },
+            { is_phone_verified: true }
+        )
+
+        return await manager.findOne(
+            "customer_otp",
+            {customer_id: customerId}
+        )
+    }
 
     async deleteByCustomerId(customerId: string): Promise<void> {
         await this.deleteCustomerOtps({

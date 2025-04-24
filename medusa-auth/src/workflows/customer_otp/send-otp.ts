@@ -33,9 +33,6 @@ const sendOtpStep = createStep(
 
             throw new Error(`Failed to send OTP. Error: ${error}`)
         }
-
-
-
     }
 )
 

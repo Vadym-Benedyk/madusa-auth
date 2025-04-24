@@ -24,44 +24,6 @@
           "nullable": false,
           "mappedType": "text"
         },
-        "otp_phone_code": {
-          "name": "otp_phone_code",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "text"
-        },
-        "otp_email_code": {
-          "name": "otp_email_code",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "mappedType": "text"
-        },
-        "otp_phone_expires_at": {
-          "name": "otp_phone_expires_at",
-          "type": "timestamptz",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
-        "otp_email_expires_at": {
-          "name": "otp_email_expires_at",
-          "type": "timestamptz",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": 6,
-          "mappedType": "datetime"
-        },
         "is_phone_verified": {
           "name": "is_phone_verified",
           "type": "boolean",
