@@ -50,7 +50,7 @@ export default defineMiddlewares({
                         next();
                     } catch (error) {
                         logger.error(`Validation error: ${error.message}`);
-                        res.status(400).json({ error: error.message });
+                        res.status(400).json({ message: "Invalid phone number format" });
                     }
                 }
             ],

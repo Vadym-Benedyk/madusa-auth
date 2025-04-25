@@ -16,7 +16,9 @@ export const validateOtpSchema = z.object({
     is_email_verified: z.boolean().nullable()
 })
 
+const phoneRegex = new RegExp(process.env.UKRAINIAN_PHONE_VALIDATOR || "^\\+380\\d{9}$");
+
 export const phoneNumberSchema = z.string().regex(
-    /^\+380\d{9}$/,
+    phoneRegex,
     "Phone number must be in the format +380XXXXXXXXX"
 );
