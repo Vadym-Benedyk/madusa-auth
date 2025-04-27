@@ -16,6 +16,8 @@ export const metadata: Metadata = {
 
 export default async function Profile() {
   const customer = await retrieveCustomer()
+
+  console.log("customer", customer)
   const regions = await listRegions()
 
   if (!customer || !regions) {

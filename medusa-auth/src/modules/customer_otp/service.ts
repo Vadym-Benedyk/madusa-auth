@@ -88,18 +88,13 @@ class CustomerOtpService extends MedusaService({
     }
 
 
-    //Get customerId and change phone verify status. Return the customer_otp object
     async updatePhoneVerificationStatus( customerId: string): Promise<CustomerOtpInterface> {
         const logger = container.resolve("logger");
 
         logger.info(`Service.Update: Incoming data: ${customerId}`);
 
-   const customerOtp = await this.retrieveCustomerOtp(customerId);
-
-        if (customerOtp.is_phone_verified === true) {
-            logger.info(`Service.Update: Phone already verified for customerId: ${customerId}`);
-            return customerOtp
-        }
+        const customerOtps = await this.listCustomerOtps({customer_id: customerId});
+        logger.info(`Updated object from DB ${JSON.stringify(customerOtps)}`);
 
         return await this.updateCustomerOtps({
             customer_id: customerId,
@@ -108,7 +103,7 @@ class CustomerOtpService extends MedusaService({
     }
 
 
-        async deleteByCustomerId(customerId: string): Promise<void> {
+    async deleteByCustomerId(customerId: string): Promise<void> {
         await this.deleteCustomerOtps({
             customer_id: customerId
         })

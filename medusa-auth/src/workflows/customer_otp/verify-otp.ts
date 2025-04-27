@@ -47,7 +47,7 @@ const updateStatusStep = createStep(
         const customerOtpService = container.resolve(CUSTOMER_OTP_MODULE);
         logger.info(`Step 3: Updating status customer_id: ${input.customerId}`)
         const result = await customerOtpService.updatePhoneVerificationStatus(input.customerId);
-        logger.info(`Updated verification status in customer_otp table: ${input.customerId}`)
+        logger.info(`Step 3:Updated verification status in customer_otp table: ${input.customerId}`)
         return new StepResponse(result);
     }
 )
