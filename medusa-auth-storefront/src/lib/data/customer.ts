@@ -43,6 +43,7 @@ export const retrieveCustomer =
       .catch(() => null)
   }
 
+
 export const updateCustomer = async (body: HttpTypes.StoreUpdateCustomer) => {
   const headers = {
     ...(await getAuthHeaders()),

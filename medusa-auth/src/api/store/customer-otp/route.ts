@@ -5,9 +5,11 @@ import {createOtpRequestSchema, verifyOtpRequestSchema} from "./validator"
 import {ContainerRegistrationKeys} from "@medusajs/framework/utils";
 import verifyOtpWorkflow from "../../../workflows/customer_otp/verify-otp";
 
+
 type CreateOtpRequestType = z.infer<typeof createOtpRequestSchema>;
 type VerifyOtpRequestType = z.infer<typeof verifyOtpRequestSchema>;
 
+// SEND  OTP BY CUSTOMER_ID
 export const GET = async (
     req: MedusaRequest,
     res: MedusaResponse
@@ -29,6 +31,7 @@ export const GET = async (
     }
 }
 
+// VERIFY OTP BY CUSTOMER_ID AND CODE
 export const POST = async (
     req: MedusaRequest,
     res: MedusaResponse

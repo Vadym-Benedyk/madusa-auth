@@ -28,6 +28,23 @@ class CustomerOtpService extends MedusaService({
     }
 
 
+    async otpByCustomerId(customerId: string) {
+        const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
+        try {
+            const otp = await this.listCustomerOtps({ customer_id: customerId });
+            logger.info(`OTP retrieved for customer ${customerId}: ${JSON.stringify(otp)}`);
+            return otp
+        } catch (error: any) {
+            logger.error("Failed to retrieve OTP:", error);
+            throw new MedusaError(
+                MedusaError.Types.INVALID_DATA,
+                `Failed to retrieve OTP: ${error.message || error.toString()}`
+            );
+        }
+
+    }
+
+
     async createCustomerOtpItem(customerId: string): Promise<CustomerOtpInterface> {
         return await this.createCustomerOtps({
             customer_id: customerId
@@ -92,6 +109,7 @@ class CustomerOtpService extends MedusaService({
         const logger = container.resolve("logger");
 
         logger.info(`Service.Update: Incoming data: ${customerId}`);
+
 
         const customerOtps = await this.listCustomerOtps({customer_id: customerId});
         logger.info(`Updated object from DB ${JSON.stringify(customerOtps)}`);

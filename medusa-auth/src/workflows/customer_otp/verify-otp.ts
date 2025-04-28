@@ -58,7 +58,7 @@ const verifyOtpWorkflow = createWorkflow(
     "verify-otp-workflow",
     function (input: { customerId: string, code: string }) {
         const phone = checkPhoneStep({ customerId: input.customerId })
-        const otpResult = verifyOtpStep({ code: input.code, phone })
+        verifyOtpStep({ code: input.code, phone })
         const updateStatusResult = updateStatusStep({ customerId: input.customerId })
 
         return new WorkflowResponse(updateStatusResult)

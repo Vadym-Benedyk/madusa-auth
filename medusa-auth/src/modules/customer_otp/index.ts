@@ -14,4 +14,4 @@ export const linkable = {
 
 export default Module(CUSTOMER_OTP_MODULE, {
     service: CustomerOtpService,
-})
+});
